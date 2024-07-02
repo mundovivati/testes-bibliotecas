@@ -58,6 +58,7 @@
     <div id='calendar' class="m-5"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -108,33 +109,35 @@
                     start: '2024-07-02 10:30', 
                     end: '2024-07-02 15:30',
                     className: ['bg-primary', 'text-white'],
-                    
                 },
                 {
                     title: 'Evento 2', 
                     start: '2024-07-02 10:30', 
                     end: '2024-07-02 11:30',
                     url: 'https://www.google.com.br',
-                    className: ['bg-danger', 'text-white']
+                    className: ['bg-danger', 'text-white'],  
                 },
                 {
                     title: 'Evento 3', 
                     start: '2024-07-03', 
                     end: '2024-07-03',
-                    className: ['bg-danger', 'text-white']
+                    className: ['bg-danger', 'text-white'],
                 },
                 {
                     title: 'Evento 4', 
                     start: '2024-07-04', 
                     end: '2024-07-04',
                     className: ['bg-warning'],
-                    display: 'background'
+                    display: 'background',
                 },
                 {
                     title: 'Evento 5', 
                     start: '2024-07-04', 
                     end: '2024-07-04',
                     className: ['bg-success', 'text-white'],
+                    extendedProps:{
+                        description: 'Descrição evento 5',
+                    }
                 },
                 {
                     title: 'Evento 6', 
@@ -171,7 +174,14 @@
             navLinks: false,
             themeSystem: 'bootstrap5',
             allDayText: 'Dia todo',
-            
+            eventDidMount: function(info) {
+                var tooltip = new bootstrap.Tooltip(info.el, {
+                    title: info.event.extendedProps.description || info.event.title,
+                    placement: 'top',
+                    trigger: 'hover',
+                    container: 'body'
+                });
+            },
         });
 
 
