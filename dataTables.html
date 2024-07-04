@@ -504,7 +504,9 @@
 $('#example').DataTable({
     colReorder: true,
     fixedHeader: true,
-    responsive: true,   
+    responsive: {
+        details: true
+    },
     select: true,
     layout: {
         topStart: {
